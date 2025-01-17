@@ -6,13 +6,20 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 import inpunts.KeyboardInputs;
+import inpunts.MouseInpunts;
 
 public class PanelJuego extends JPanel {
+	
+	private MouseInpunts mouseInpunts;
+	
 //Esta clase se encarga de dibujar
 	public PanelJuego() {
 		
 		//Llamamos a la clase que gestiona las llamadas de eventos
+		mouseInpunts = new MouseInpunts();
 		addKeyListener(new KeyboardInputs());
+		addMouseListener(mouseInpunts);
+		addMouseMotionListener(mouseInpunts);
 		setFocusable(true);
         requestFocusInWindow();
 	}

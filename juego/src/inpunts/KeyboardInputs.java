@@ -8,19 +8,34 @@ public class KeyboardInputs implements KeyListener {
 	// Movimientos ponemos a la escucha las teclas que van a hacer una aciion o click.
 	@Override
 	public void keyTyped(KeyEvent e) {
-		System.out.println("Has presionado algo");
+		
 		
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		System.out.println("Has presionado algo");
+
 		
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		System.out.println("Has presionado algo");
+		
+		switch(e.getKeyCode()) {
+		
+		case KeyEvent.VK_W:
+			System.out.println("W");
+			break;
+		case KeyEvent.VK_A:
+			System.out.println("A");
+			break;
+		case KeyEvent.VK_S:
+			System.out.println("S");
+			break;
+		case KeyEvent.VK_D:
+			System.out.println("D");
+			break;
+		}
 		
 	}
 
