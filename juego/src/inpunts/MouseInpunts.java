@@ -4,17 +4,24 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-public class MouseInpunts implements MouseListener, MouseMotionListener {
+import main.PanelJuego;
 
+public class MouseInpunts implements MouseListener, MouseMotionListener {
+	
+	private PanelJuego panelJuego;
+	
+	public MouseInpunts(PanelJuego panelJuego) {
+		this.panelJuego  = panelJuego;
+	}
+	
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		
 		
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		System.out.println("Mouse se mueve");
+		panelJuego.setPosicion(e.getX(), e.getY());
 		
 	}
 

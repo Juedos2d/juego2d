@@ -7,4 +7,4 @@ public class Principal {
 
         new VentanaJuego(panel);
     }
-}
+} 
