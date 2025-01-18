@@ -12,6 +12,8 @@ public class PanelJuego extends JPanel {
 	
 	private MouseInpunts mouseInpunts;
 	private int xLado = 100, yArriba = 100; //Instancio variables de movimiento para los movimientos
+	private int frames = 0;
+	private long ultimaActfps = 0;
 	
 //Esta clase se encarga de dibujar
 	public PanelJuego() {
@@ -27,19 +29,19 @@ public class PanelJuego extends JPanel {
 	
 	public void cambiarYArriba(int valor) {
 		this.yArriba += valor;
-		repaint(); //Actualizamos el dibujo por asi llamarlo
+		
 		
 	}
 	
 	public void cambiarXLado(int valor) {
 		this.xLado += valor;
-		repaint();
+
 	}
 	
 	public void setPosicion(int x, int y) {
 		this.yArriba = y;
 		this.xLado = x;
-		repaint();
+
 		
 	}
 	
@@ -49,6 +51,15 @@ public class PanelJuego extends JPanel {
 		super.paintComponent(g);
 		
 		g.fillRect(xLado, yArriba, 200, 50);
+		
+		frames++;
+		if(System.currentTimeMillis() - ultimaActfps >= 1000) {
+			ultimaActfps = System.currentTimeMillis();
+			System.out.println("FPS: " + frames);
+			frames = 0;
+		}
+		
+		repaint(); //Actualizamos el dibujo por asi llamarlo
 		
 	}
 }
