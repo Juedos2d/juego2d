@@ -16,7 +16,7 @@ public class PanelJuego extends JPanel {
 	
 	private MouseInpunts mouseInpunts;
 	private float  xLado = 100, yArriba = 100; //Instancio variables de movimiento para los movimientos
-	private BufferedImage imagen;
+	private BufferedImage imagen, imagen2;
 
 	
 //Esta clase se encarga de dibujar
@@ -36,7 +36,7 @@ public class PanelJuego extends JPanel {
 	} 
 	
 	private void importarImagen() {
-		InputStream flujo = getClass().getResourceAsStream("/res/Warrior_Blue.png");
+		InputStream flujo = getClass().getResourceAsStream("/Warrior_Blue.png");
 		
 		try {
 			imagen = ImageIO.read(flujo);
@@ -76,7 +76,8 @@ public class PanelJuego extends JPanel {
 	public void paintComponent (Graphics g) {
 		super.paintComponent(g);
 		
-		//g.drawImage(null, x, y, null);
+		imagen2 = imagen.getSubimage(3 * 140, 3 * 140, 140, 140);
+		g.drawImage(imagen2,(int)xLado,(int) yArriba, 140, 140, null);
 
 	}
 }

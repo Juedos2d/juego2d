@@ -27,7 +27,7 @@ public class MouseInpunts implements MouseListener, MouseMotionListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		System.out.println("Mouse click");
+	
 		
 	}
 
