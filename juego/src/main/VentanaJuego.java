@@ -7,10 +7,13 @@ public class VentanaJuego {
 
     public VentanaJuego(PanelJuego juegoPanel) {
         jframe = new JFrame();
-        jframe.setSize(400, 400);
+       
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jframe.add(juegoPanel);
+        jframe.setResizable(false); //Tamaño estatico
         jframe.setLocationRelativeTo(null);
+        
+        jframe.pack(); //Pa que pille el tamaño del jpanel mas facil
         jframe.setVisible(true);
     }
 }
