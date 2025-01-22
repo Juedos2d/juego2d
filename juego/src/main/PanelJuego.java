@@ -1,19 +1,19 @@
 package main;
 
-import java.awt.Graphics;
-
-
-import javax.swing.JPanel;
-
 import inpunts.KeyboardInputs;
 import inpunts.MouseInpunts;
+import java.awt.Color;
+import java.awt.Graphics;
+import javax.swing.JPanel;
 
 public class PanelJuego extends JPanel {
 	
 	private MouseInpunts mouseInpunts;
-	private int xLado = 100, yArriba = 100; //Instancio variables de movimiento para los movimientos
+	private float  xLado = 100, yArriba = 100; //Instancio variables de movimiento para los movimientos
+	private float xDirc = 0.03f, yDirc = 0.03f;
 	private int frames = 0;
 	private long ultimaActfps = 0;
+	private Color color = new Color(150,20,90);
 	
 //Esta clase se encarga de dibujar
 	public PanelJuego() {
@@ -50,7 +50,9 @@ public class PanelJuego extends JPanel {
 	public void paintComponent (Graphics g) {
 		super.paintComponent(g);
 		
-		g.fillRect(xLado, yArriba, 200, 50);
+		updateRectangle();
+		g.setColor(new Color(150, 20, 90));
+		g.fillRect((int)xLado,(int) yArriba, 200, 50);
 		
 		frames++;
 		if(System.currentTimeMillis() - ultimaActfps >= 1000) {
@@ -62,4 +64,18 @@ public class PanelJuego extends JPanel {
 		repaint(); //Actualizamos el dibujo por asi llamarlo
 		
 	}
+
+    private void updateRectangle() {
+		xLado += xDirc;
+		if(xLado > 400 || xLado < 0 ){
+			xDirc *= -1;
+		}
+			
+		
+		yArriba += yDirc;
+		if(yArriba > 400 || yArriba < 0 ){
+			yDirc *= -1;
+		}
+    }
+
 }
