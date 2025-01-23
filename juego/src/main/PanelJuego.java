@@ -41,7 +41,7 @@ public class PanelJuego extends JPanel {
 	} 
 	
 	private void cargarAnimaciones() {
-		animaciones = new BufferedImage[8][6];
+		animaciones = new BufferedImage[6][6];
 		
 		for(int j = 0; j < animaciones.length; j++)
 	  
@@ -93,19 +93,19 @@ public class PanelJuego extends JPanel {
 			aniNormal++;
 			
 			
-		}if(aniNormal >= listaDefecto.length) {
+		}if(aniNormal >= animaciones.length) {
 			aniNormal = 0;
 		}
 			
 		
 	}
 	
-	//Para dibujar necesitas un jpanel pero no es el que dibuja es el contenedor
+	//Para dibujar necesitas un jpanel pero no es el que dibuja es el contenedor 
 	public void paintComponent (Graphics g) {
 		super.paintComponent(g);
 	
 		cargarAnimacionCompleta(); 
-		g.drawImage(listaDefecto[aniNormal], (int) xLado, (int) yArriba, 128, 179, null); // LLamo aqui a la posicion 3 ya que es la que esta a mitad de la animacion
+		g.drawImage(animaciones[1][aniNormal], (int) xLado, (int) yArriba, 128, 179, null); // LLamo aqui a la posicion 3 ya que es la que esta a mitad de la animacion
 
 	}
 
