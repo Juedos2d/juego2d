@@ -17,7 +17,7 @@ public class PanelJuego extends JPanel {
 	private MouseInpunts mouseInpunts;
 	private float  xLado = 100, yArriba = 100; //Instancio variables de movimiento para los movimientos
 	private BufferedImage imagen;
-	private BufferedImage[] listaDefecto;
+	private BufferedImage[][] animaciones;
 	private int  aniSegundo, aniNormal; //Para crear el recorrido completo de las animaciones
 	private int  velocidadAni = 30; //velocidad de las animaciones
 
@@ -41,10 +41,12 @@ public class PanelJuego extends JPanel {
 	} 
 	
 	private void cargarAnimaciones() {
-	    listaDefecto = new BufferedImage[8];
-	    
-	    for(int i = 0; i < listaDefecto.length; i++) {
-	    	listaDefecto[i] = imagen.getSubimage(i*128,179,128,179);
+		animaciones = new BufferedImage[8][6];
+		
+		for(int j = 0; j < animaciones.length; j++)
+	  
+			for(int i = 0; i < animaciones[j].length; i++) {
+				animaciones[i][j] = imagen.getSubimage(i*128, j * 179 ,128 ,179);
 	    }
 	}
 
