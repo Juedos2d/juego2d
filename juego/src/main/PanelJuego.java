@@ -16,7 +16,10 @@ public class PanelJuego extends JPanel {
 	
 	private MouseInpunts mouseInpunts;
 	private float  xLado = 100, yArriba = 100; //Instancio variables de movimiento para los movimientos
-	private BufferedImage imagen, imagen2;
+	private BufferedImage imagen;
+	private BufferedImage[] listaDefecto;
+	private int  aniSegundo, aniNormal; //Para crear el recorrido completo de las animaciones
+	private int  velocidadAni = 30; //velocidad de las animaciones
 
 	
 //Esta clase se encarga de dibujar
@@ -26,6 +29,8 @@ public class PanelJuego extends JPanel {
 		mouseInpunts = new MouseInpunts(this);
 		
 		importarImagen();
+		cargarAnimaciones();
+		
 		
 		setPanelSize();
 		addKeyListener(new KeyboardInputs(this));
@@ -35,6 +40,14 @@ public class PanelJuego extends JPanel {
         requestFocusInWindow();
 	} 
 	
+	private void cargarAnimaciones() {
+	    listaDefecto = new BufferedImage[8];
+	    
+	    for(int i = 0; i < listaDefecto.length; i++) {
+	    	listaDefecto[i] = imagen.getSubimage(i*128,179,128,179);
+	    }
+	}
+
 	private void importarImagen() {
 		InputStream flujo = getClass().getResourceAsStream("/Warrior_Blue.png");
 		
@@ -67,17 +80,32 @@ public class PanelJuego extends JPanel {
 	public void setPosicion(int x, int y) {
 		this.yArriba = y;
 		this.xLado = x;
-
-		
 	}
 	
+	
+	private void cargarAnimacionCompleta() {
+		aniSegundo++;
+		
+		if(aniSegundo >= velocidadAni ){
+			aniSegundo = 0;
+			aniNormal++;
+			
+			
+		}if(aniNormal >= listaDefecto.length) {
+			aniNormal = 0;
+		}
+			
+		
+	}
 	
 	//Para dibujar necesitas un jpanel pero no es el que dibuja es el contenedor
 	public void paintComponent (Graphics g) {
 		super.paintComponent(g);
-		
-		imagen2 = imagen.getSubimage(3 * 140, 3 * 140, 140, 140);
-		g.drawImage(imagen2,(int)xLado,(int) yArriba, 140, 140, null);
+	
+		cargarAnimacionCompleta(); 
+		g.drawImage(listaDefecto[aniNormal], (int) xLado, (int) yArriba, 128, 179, null); // LLamo aqui a la posicion 3 ya que es la que esta a mitad de la animacion
 
 	}
+
+
 }

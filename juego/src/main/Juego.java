@@ -16,7 +16,7 @@ public class Juego implements Runnable{
 	
 	
 	private void empezarJuego() {
-		juegoHilo = new Thread();
+		juegoHilo = new Thread(this);
 		juegoHilo.start();
 	}
 	
@@ -31,7 +31,7 @@ public class Juego implements Runnable{
 		
 		while (true) {
 			ahora = System.nanoTime(); // Lo pongo dentro del bucle para que se vaya actualizando 
-			if(System.nanoTime() - ultimoFrame >= FPS_LIMITADOR) {
+			if(ahora - ultimoFrame >= FPS_LIMITADOR) {
 			panelJuego.repaint();
 			ultimoFrame = ahora;
 			frames++;
@@ -43,8 +43,6 @@ public class Juego implements Runnable{
 				frames = 0;
 			}
 		}
-		
-		
 		
 	}
 }

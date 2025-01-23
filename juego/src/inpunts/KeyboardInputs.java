@@ -33,15 +33,19 @@ public class KeyboardInputs implements KeyListener {
 		
 		case KeyEvent.VK_W:
 			panelJuego.cambiarYArriba(-5);
+			panelJuego.repaint();
 			break;
 		case KeyEvent.VK_A:
 			panelJuego.cambiarXLado(-5);
+			panelJuego.repaint();
 			break;
 		case KeyEvent.VK_S:
 			panelJuego.cambiarYArriba(5);
+			panelJuego.repaint();
 			break;
 		case KeyEvent.VK_D:
 			panelJuego.cambiarXLado(5);
+			panelJuego.repaint();
 			break;
 		}
 		
