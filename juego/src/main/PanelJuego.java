@@ -11,6 +11,7 @@ import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+import static utilidades.Constantes.JugadorConstantes.*;
 
 public class PanelJuego extends JPanel {
 	
@@ -18,8 +19,8 @@ public class PanelJuego extends JPanel {
 	private float  xLado = 100, yArriba = 100; //Instancio variables de movimiento para los movimientos
 	private BufferedImage imagen;
 	private BufferedImage[][] animaciones;
-	private int  aniSegundo, aniNormal; //Para crear el recorrido completo de las animaciones
-	private int  velocidadAni = 30; //velocidad de las animaciones
+	private int  aniSegundo, aniNormal, velocidadAni = 30; //Para crear el recorrido completo de las animaciones //velocidad de las animaciones
+	private int jugadorAccion = ESTANDAR;
 
 	
 //Esta clase se encarga de dibujar
@@ -109,7 +110,7 @@ public class PanelJuego extends JPanel {
 		super.paintComponent(g);
 	
 		cargarAnimacionCompleta(); 
-		g.drawImage(animaciones[1][aniNormal], (int) xLado, (int) yArriba, 128, 179, null); // LLamo aqui a la posicion 3 ya que es la que esta a mitad de la animacion
+		g.drawImage(animaciones[jugadorAccion][aniNormal], (int) xLado, (int) yArriba, 128, 179, null); // LLamo aqui a la posicion 3 ya que es la que esta a mitad de la animacion
 
 	}
 
