@@ -22,7 +22,6 @@ public class MouseInpunts implements MouseListener, MouseMotionListener {
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		
-		panelJuego.repaint();
 	}
 
 	@Override

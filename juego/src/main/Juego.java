@@ -31,7 +31,7 @@ public class Juego implements Runnable{
 		
 		while (true) {
 			ahora = System.nanoTime(); // Lo pongo dentro del bucle para que se vaya actualizando 
-			if(ahora - ultimoFrame >= FPS_LIMITADOR) {
+			if(ahora - ultimoFrame >= tiempoPorFrame) {
 			panelJuego.repaint();
 			ultimoFrame = ahora;
 			frames++;

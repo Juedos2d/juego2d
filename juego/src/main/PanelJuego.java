@@ -12,6 +12,7 @@ import java.io.InputStream;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import static utilidades.Constantes.JugadorConstantes.*;
+import static utilidades.Constantes.Directions.*;
 
 public class PanelJuego extends JPanel {
 	
@@ -19,8 +20,10 @@ public class PanelJuego extends JPanel {
 	private float  xLado = 100, yArriba = 100; //Instancio variables de movimiento para los movimientos
 	private BufferedImage imagen;
 	private BufferedImage[][] animaciones;
-	private int  aniSegundo, aniNormal, velocidadAni = 30; //Para crear el recorrido completo de las animaciones //velocidad de las animaciones
+	private int  aniSegundo, aniNormal, velocidadAni = 45; //Para crear el recorrido completo de las animaciones //velocidad de las animaciones
 	private int jugadorAccion = ESTANDAR;
+	private int jugadorDir = -1;
+	private boolean moving = false;
 
 	
 //Esta clase se encarga de dibujar
@@ -37,18 +40,15 @@ public class PanelJuego extends JPanel {
 		addKeyListener(new KeyboardInputs(this));
 		addMouseListener(mouseInpunts);
 		addMouseMotionListener(mouseInpunts);
-		setFocusable(true);
-        requestFocusInWindow();
 	} 
 	
 	private void cargarAnimaciones() {
 		animaciones = new BufferedImage[6][6];
 		
 		for(int j = 0; j < animaciones.length; j++)
-	  
-			for(int i = 0; i < animaciones[j].length; i++) {
-				animaciones[i][j] = imagen.getSubimage(i*190, j * 179 ,128 ,179);
-	    }
+			for(int i = 0; i < animaciones[j].length; i++) 
+				animaciones[j][i] = imagen.getSubimage(i*195, j * 179 ,128 ,179);
+	    
 	}
 
 	InputStream flujo = getClass().getResourceAsStream("Warrior_Blue.png");
@@ -73,21 +73,17 @@ public class PanelJuego extends JPanel {
 		setMaximumSize(size);
 }
 
-	public void cambiarYArriba(int valor) {
-		this.yArriba += valor;
+	public void setDirection(int direccion) {
+		this.jugadorDir = direccion;
+		moving = true;
 		
+	}
+	public void setMoving(boolean moving) {
+		this.moving = moving;
 		
 	}
 	
-	public void cambiarXLado(int valor) {
-		this.xLado += valor;
 
-	}
-	
-	public void setPosicion(int x, int y) {
-		this.yArriba = y;
-		this.xLado = x;
-	}
 	
 	
 	private void cargarAnimacionCompleta() {
@@ -98,11 +94,37 @@ public class PanelJuego extends JPanel {
 			aniNormal++;
 			
 			
-		}if(aniNormal >= 6) {
+		}if(aniNormal >= GetSpritesCantidad(jugadorAccion)) {
 			aniNormal = 0;
 		}
 			
 		
+	}
+	private void setAnimacion() {
+		if(moving)
+			jugadorAccion = CORRER;
+		else
+			jugadorAccion = ESTANDAR;
+		
+	}
+	private void cambiarPos() {
+		if(moving) {
+			switch(jugadorDir) {
+			case IZQUIERDA:
+				xLado-=5;
+				break;
+			case ARRIBA:
+				yArriba-=5;
+				break;
+			case DERECHA:
+				xLado+=5;
+				break;
+			case ABAJO:
+				yArriba +=5;
+				break;
+			
+			}
+		}
 	}
 	
 	//Para dibujar necesitas un jpanel pero no es el que dibuja es el contenedor 
@@ -110,9 +132,15 @@ public class PanelJuego extends JPanel {
 		super.paintComponent(g);
 	
 		cargarAnimacionCompleta(); 
+		setAnimacion();
+		cambiarPos();
 		g.drawImage(animaciones[jugadorAccion][aniNormal], (int) xLado, (int) yArriba, 128, 179, null); // LLamo aqui a la posicion 3 ya que es la que esta a mitad de la animacion
 
 	}
+
+	
+
+
 
 
 }

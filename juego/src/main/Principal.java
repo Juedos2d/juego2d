@@ -5,6 +5,6 @@ public class Principal {
         PanelJuego panel = new PanelJuego();
 
 
-        new VentanaJuego(panel);
+        new Juego();
     }
 } 

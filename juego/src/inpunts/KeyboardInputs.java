@@ -2,6 +2,7 @@ package inpunts;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import static utilidades.Constantes.Directions.*;
 
 import main.PanelJuego;
 	
@@ -23,30 +24,34 @@ public class KeyboardInputs implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-
+		switch(e.getKeyCode()) {
+		
+		case KeyEvent.VK_W:
+			panelJuego.setDirection(ARRIBA);
+			break;
+		case KeyEvent.VK_A:
+			panelJuego.setDirection(IZQUIERDA);
+			break;
+		case KeyEvent.VK_S:
+			panelJuego.setDirection(ABAJO);
+			break;
+		case KeyEvent.VK_D:
+			panelJuego.setDirection(DERECHA);
+			break;
+		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		
 		switch(e.getKeyCode()) {
 		
-		case KeyEvent.VK_W:
-			panelJuego.cambiarYArriba(-5);
-			panelJuego.repaint();
-			break;
-		case KeyEvent.VK_A:
-			panelJuego.cambiarXLado(-5);
-			panelJuego.repaint();
-			break;
+		case KeyEvent.VK_W:		
+		case KeyEvent.VK_A:			
 		case KeyEvent.VK_S:
-			panelJuego.cambiarYArriba(5);
-			panelJuego.repaint();
-			break;
 		case KeyEvent.VK_D:
-			panelJuego.cambiarXLado(5);
-			panelJuego.repaint();
+			panelJuego.setMoving(false);
 			break;
+		
 		}
 		
 	}
