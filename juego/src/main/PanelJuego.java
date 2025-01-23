@@ -46,19 +46,23 @@ public class PanelJuego extends JPanel {
 		for(int j = 0; j < animaciones.length; j++)
 	  
 			for(int i = 0; i < animaciones[j].length; i++) {
-				animaciones[i][j] = imagen.getSubimage(i*128, j * 179 ,128 ,179);
+				animaciones[i][j] = imagen.getSubimage(i*190, j * 179 ,128 ,179);
 	    }
 	}
 
-	private void importarImagen() {
-		InputStream flujo = getClass().getResourceAsStream("/Warrior_Blue.png");
-		
-		try {
-			imagen = ImageIO.read(flujo);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	InputStream flujo = getClass().getResourceAsStream("Warrior_Blue.png");
 	
+	private void importarImagen() {
+		
+		if (flujo == null) {
+		    System.out.println("¡El archivo de imagen no se encuentra! Verifica la ruta.");
+		} else {
+		    try {
+		        imagen = ImageIO.read(flujo);
+		    } catch (IOException e) {
+		        e.printStackTrace();
+		    }
+		}
 }
 
 	private void setPanelSize() {
@@ -93,7 +97,7 @@ public class PanelJuego extends JPanel {
 			aniNormal++;
 			
 			
-		}if(aniNormal >= animaciones.length) {
+		}if(aniNormal >= 6) {
 			aniNormal = 0;
 		}
 			
