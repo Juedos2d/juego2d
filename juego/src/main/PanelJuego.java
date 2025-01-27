@@ -2,17 +2,15 @@ package main;
 
 import inpunts.KeyboardInputs;
 import inpunts.MouseInpunts;
-
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
-
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
-import static utilidades.Constantes.JugadorConstantes.*;
 import static utilidades.Constantes.Directions.*;
+import static utilidades.Constantes.JugadorConstantes.*;
 
 public class PanelJuego extends JPanel {
 	
@@ -126,14 +124,18 @@ public class PanelJuego extends JPanel {
 			}
 		}
 	}
+
+	public void actualizarJuego() {
+		cargarAnimacionCompleta(); 
+		setAnimacion();
+		cambiarPos();
+    }
 	
 	//Para dibujar necesitas un jpanel pero no es el que dibuja es el contenedor 
 	public void paintComponent (Graphics g) {
 		super.paintComponent(g);
 	
-		cargarAnimacionCompleta(); 
-		setAnimacion();
-		cambiarPos();
+		
 		g.drawImage(animaciones[jugadorAccion][aniNormal], (int) xLado, (int) yArriba, 128, 179, null); // LLamo aqui a la posicion 3 ya que es la que esta a mitad de la animacion
 
 	}
