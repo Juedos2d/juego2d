@@ -6,6 +6,8 @@ public class Juego implements Runnable{
 	private Thread juegoHilo;
 	private final int FPS_LIMITADOR = 120;
 	private final int UPS_SET = 200;
+
+	private Jugador jugador;
 	
 	public Juego() {
 		panelJuego = new PanelJuego();
@@ -13,7 +15,12 @@ public class Juego implements Runnable{
 		panelJuego.setFocusable(true);
 		panelJuego.requestFocus(); // Establece un foco de entrada para los eventos
 		empezarJuego();
+		initClases();
 	}
+
+	private void initClases() {
+		jugador = new Jugador();
+    }
 	
 	
 	private void empezarJuego() {
@@ -71,4 +78,6 @@ public class Juego implements Runnable{
 		}
 		
 	}
+
+
 }
