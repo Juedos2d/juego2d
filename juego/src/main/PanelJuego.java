@@ -5,15 +5,17 @@ import inpunts.MouseInpunts;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import javax.swing.JPanel;
-
+import java.awt.Color;
 public class PanelJuego extends JPanel {
 	
 	private MouseInpunts mouseInpunts;	
-//Esta clase se encarga de dibujar
-	public PanelJuego() {
+	private Juego juego;
+
+	public PanelJuego(Juego juego) {
 		
 		//Llamamos a la clase que gestiona las llamadas de eventos
 		mouseInpunts = new MouseInpunts(this);
+		this.juego= juego;
 		
 		
 		setPanelSize();
@@ -38,11 +40,15 @@ public class PanelJuego extends JPanel {
 	public void paintComponent (Graphics g) {
 		super.paintComponent(g);
 
+		g.setColor(Color.white);
+		for (int i = 0; i < 64; i++)
+			for (int j = 0; j < 40; j++)
+				g.fillRect(i * 20, j * 20, 20, 20);
+
+		juego.render(g);
 	}
-
 	
-
-
-
-
+	public Juego getJuego() {
+		return juego;
+	}
 }

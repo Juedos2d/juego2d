@@ -1,5 +1,9 @@
 package main;
 
+import java.awt.Graphics;
+
+import entidades.Jugador;
+
 public class Juego implements Runnable{
 	private VentanaJuego ventanaJuego;
 	private PanelJuego panelJuego;
@@ -10,28 +14,36 @@ public class Juego implements Runnable{
 	private Jugador jugador;
 	
 	public Juego() {
-		panelJuego = new PanelJuego();
+		initClases();
+		panelJuego = new PanelJuego(this);
 		ventanaJuego = new VentanaJuego(panelJuego);
 		panelJuego.setFocusable(true);
 		panelJuego.requestFocus(); // Establece un foco de entrada para los eventos
+		
+		
 		empezarJuego();
-		initClases();
+		
 	}
 
 	private void initClases() {
-		jugador = new Jugador();
+		jugador = new Jugador(200, 200); // Posiciona el jugador en un sitio
     }
 	
 	
-	private void empezarJuego() {
+	private void empezarJuego() {  // LLamamos al hilo el cual lleva la ejecucion del juego
 		juegoHilo = new Thread(this);
 		juegoHilo.start();
 	}
 
-	public void update() {
-		panelJuego.actualizarJuego();
+	public void actualiza() {
+		jugador.actualiza();
         
     }
+	
+	public void render(Graphics g) {
+		jugador.render(g);
+		
+	}
 	
 	
 	@Override
@@ -58,7 +70,7 @@ public class Juego implements Runnable{
 			tiempoanterior = tiempoActual;
 
 			if (deltaU >=1){
-				update();
+				actualiza();
 				updates++;
 				deltaU--;
 			}
@@ -78,6 +90,17 @@ public class Juego implements Runnable{
 		}
 		
 	}
+	
+	public void windowFocusLost() {
+		jugador.resetearBoleanos();
+	}
+	
+	
+	
+	public Jugador getJugador() {
+		return jugador;
+	}
+	
 
 
 }

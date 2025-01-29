@@ -9,14 +9,14 @@ import javax.imageio.ImageIO;
 import static utilidades.Constantes.JugadorConstantes.*;
 import static utilidades.Constantes.Directions.*;
 
-public class Jugador extends entidad{
+public class Jugador extends Entidad{
 
 	private BufferedImage[][] animaciones;
 	private int  aniSegundo, aniNormal, velocidadAni = 45; //Para crear el recorrido completo de las animaciones //velocidad de las animaciones
 	private int jugadorAccion = ESTANDAR;
-	private int jugadorDir = -1;
 	private boolean moving = false;
-	
+	private boolean izq, arriba, der, abajo;
+	private float jugadorVelocidad = 2.0f;
 
 
 	public Jugador(float x, float y) {
@@ -25,10 +25,10 @@ public class Jugador extends entidad{
 		
 	}
 	
-	public void update() {
+	public void actualiza() {
+		cambiarPos();
 		cargarAnimacionCompleta(); 
 		setAnimacion();
-		cambiarPos();
 		
 		
 	}
@@ -37,18 +37,6 @@ public class Jugador extends entidad{
 		g.drawImage(animaciones[jugadorAccion][aniNormal], (int) x, (int) y, 128, 179, null); // LLamo aqui a la posicion 3 ya que es la que esta a mitad de la animacion
 		
 	}
-	public void setDirection(int direccion) {
-		this.jugadorDir = direccion;
-		moving = true;
-		
-	}
-	public void setMoving(boolean moving) {
-		this.moving = moving;
-		
-	}
-	
-
-	
 	
 	private void cargarAnimacionCompleta() {
 		aniSegundo++;
@@ -69,23 +57,24 @@ public class Jugador extends entidad{
 			jugadorAccion = ESTANDAR;
 		
 	}
-	private void cambiarPos() {
-		if(moving) {
-			switch(jugadorDir) {
-			case IZQUIERDA:
-				x -=5;
-				break;
-			case ARRIBA:
-				y -=5;
-				break;
-			case DERECHA:
-				x +=5;
-				break;
-			case ABAJO:
-				y +=5;
-				break;
-			
-			}
+	private void cambiarPos() { // Esto lo realizamos cuando pulsamos dos teclas a la vez 
+		
+		moving = false;
+		
+		if(izq && !der) {
+			x-= jugadorVelocidad;
+			moving = true;
+		} else if ( der && !izq) {
+			moving = true;
+			x+= jugadorVelocidad;
+		}
+		
+		if(arriba && !abajo) {
+			moving = true;
+			y-= jugadorVelocidad;
+		} else if ( abajo && !arriba) {
+			moving = true;
+			y+= jugadorVelocidad;
 		}
 	}
 	
@@ -107,11 +96,54 @@ public class Jugador extends entidad{
 		} finally {
 			try {
 				flujo.close();
+				if (flujo != null) {
+                    flujo.close();
+                }
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-	}		
+	}
+
+	public boolean isIzq() {
+		return izq;
+	}
+
+	public void setIzq(boolean izq) {
+		this.izq = izq;
+	}
+
+	public boolean isArriba() {
+		return arriba;
+	}
+
+	public void setArriba(boolean arriba) {
+		this.arriba = arriba;
+	}
+
+	public boolean isDer() {
+		return der;
+	}
+
+	public void setDer(boolean der) {
+		this.der = der;
+	}
+
+	public boolean isAbajo() {
+		return abajo;
+	}
+
+	public void setAbajo(boolean abajo) {
+		this.abajo = abajo;
+	}
+
+	public void resetearBoleanos() {
+			izq = false;
+			der = false;
+			arriba  = false;
+			abajo = false;
+	}	
+	
+	
+	
 }
-
-
