@@ -62,19 +62,19 @@ public class Jugador extends Entidad{
 		moving = false;
 		
 		if(izq && !der) {
-			x-= jugadorVelocidad;
-			moving = true;
+			x -= jugadorVelocidad;
+			moving = true; // Instanciarlo despues no se guarda el cambio ya se que es xd esque me paso
 		} else if ( der && !izq) {
+			x += jugadorVelocidad;
 			moving = true;
-			x+= jugadorVelocidad;
 		}
 		
 		if(arriba && !abajo) {
+			y -= jugadorVelocidad;
 			moving = true;
-			y-= jugadorVelocidad;
 		} else if ( abajo && !arriba) {
+			y += jugadorVelocidad;
 			moving = true;
-			y+= jugadorVelocidad;
 		}
 	}
 	
@@ -87,9 +87,9 @@ public class Jugador extends Entidad{
 
 			animaciones = new BufferedImage[6][6];
 		
-			for(int j = 0; j < animaciones.length; j++)
-				for(int i = 0; i < animaciones[j].length; i++) 
-					animaciones[j][i] = imagen.getSubimage(i*195, j * 179 ,128 ,179);
+			for(int y = 0; y < animaciones.length; y++)
+				for(int i = 0; i < animaciones[y].length; i++) 
+					animaciones[y][i] = imagen.getSubimage(i*195, y * 179 ,128 ,179);  // x,y,ancho,altura
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -143,7 +143,4 @@ public class Jugador extends Entidad{
 			arriba  = false;
 			abajo = false;
 	}	
-	
-	
-	
 }

@@ -39,13 +39,13 @@ public class PanelJuego extends JPanel {
 	//Para dibujar necesitas un jpanel pero no es el que dibuja es el contenedor 
 	public void paintComponent (Graphics g) {
 		super.paintComponent(g);
-
-		g.setColor(Color.white);
+		
+		g.setColor(Color.black);
 		for (int i = 0; i < 64; i++)
 			for (int j = 0; j < 40; j++)
-				g.fillRect(i * 20, j * 20, 20, 20);
+				g.fillRect(i * 20, j * 20, 20, 20); // Aqui pongo las dimensiones para pintarlo todo negro todo el frame
 
-		juego.render(g);
+		juego.render(g); // Llamamos para dibujar el muñeco
 	}
 	
 	public Juego getJuego() {
