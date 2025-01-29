@@ -23,7 +23,7 @@ public class VentanaJuego {
         	
         	@Override
         	public void windowLostFocus(WindowEvent e) {
-        		PanelJuego.getJuego().windowFocusLost();
+        		juegoPanel.getJuego().windowFocusLost();
         	}
         	
         	@Override
