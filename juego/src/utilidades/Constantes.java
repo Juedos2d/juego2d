@@ -22,8 +22,8 @@ public class Constantes {
 		public static int GetSpritesCantidad(int jugador_accion) {
 			
 			switch(jugador_accion) {
-			case CORRER:
 			case ESTANDAR:
+			case CORRER:
 			case SALTAR:
 			case GOLPE:
 			case ATAQUE_1:
@@ -32,7 +32,6 @@ public class Constantes {
 			default:
 				return 1;
 				
-			
 			
 			}
 			

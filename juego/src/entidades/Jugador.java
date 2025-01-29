@@ -30,7 +30,6 @@ public class Jugador extends Entidad{
 		cargarAnimacionCompleta(); 
 		setAnimacion();
 		
-		
 	}
 	
 	public void render(Graphics g) {
@@ -48,8 +47,8 @@ public class Jugador extends Entidad{
 			aniNormal = 0;
 		}
 			
-		
 	}
+	
 	private void setAnimacion() {
 		if(moving)
 			jugadorAccion = CORRER;
@@ -57,6 +56,7 @@ public class Jugador extends Entidad{
 			jugadorAccion = ESTANDAR;
 		
 	}
+	
 	private void cambiarPos() { // Esto lo realizamos cuando pulsamos dos teclas a la vez 
 		
 		moving = false;
@@ -88,8 +88,8 @@ public class Jugador extends Entidad{
 			animaciones = new BufferedImage[6][6];
 		
 			for(int y = 0; y < animaciones.length; y++)
-				for(int i = 0; i < animaciones[y].length; i++) 
-					animaciones[y][i] = imagen.getSubimage(i*195, y * 179 ,128 ,179);  // x,y,ancho,altura
+				for(int x = 0; x < animaciones[y].length; x++) 
+					animaciones[y][x] = imagen.getSubimage(x*195, y * 179 ,128 ,179);  // x,y,ancho,altura
 
 		} catch (IOException e) {
 			e.printStackTrace();
