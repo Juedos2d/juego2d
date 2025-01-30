@@ -1,8 +1,7 @@
 package main;
 
-import java.awt.Graphics;
-
 import entidades.Jugador;
+import java.awt.Graphics;
 
 public class Juego implements Runnable{
 	private VentanaJuego ventanaJuego;
@@ -10,9 +9,16 @@ public class Juego implements Runnable{
 	private Thread juegoHilo;
 	private final int FPS_LIMITADOR = 120;
 	private final int UPS_SET = 200;
-
 	private Jugador jugador;
-	
+
+	public final static int TILES_DEFAULT_SIZE = 32;
+	public final static float ESCALA = 1.5f;
+	public final static int TILES_IN_WIDHT = 26;
+	public final static int TILES_IN_HEIGHT = 14;
+	public final static int TILES_SIZE = (int) (TILES_DEFAULT_SIZE + ESCALA);
+	public final static int GAME_WIDTH = TILES_SIZE * TILES_IN_WIDHT;
+	public final static int GAME_HEIGHT = TILES_SIZE * TILES_IN_HEIGHT;
+
 	public Juego() {
 		initClases();
 		panelJuego = new PanelJuego(this);

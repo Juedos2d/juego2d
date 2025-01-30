@@ -2,10 +2,12 @@ package main;
 
 import inpunts.KeyboardInputs;
 import inpunts.MouseInpunts;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import javax.swing.JPanel;
-import java.awt.Color;
+import static main.Juego.GAME_HEIGHT;
+import static main.Juego.GAME_WIDTH;
 public class PanelJuego extends JPanel {
 	
 	private MouseInpunts mouseInpunts;	
@@ -26,10 +28,10 @@ public class PanelJuego extends JPanel {
 	
 
 	private void setPanelSize() {
-		Dimension size = new Dimension(1280,800);
-		setMinimumSize(size);
+		Dimension size = new Dimension(GAME_WIDTH, GAME_HEIGHT);
 		setPreferredSize(size);
-		setMaximumSize(size);
+		System.out.println("Size: " + GAME_HEIGHT + ": " + GAME_WIDTH);
+
 }
 
 	public void actualizarJuego() {

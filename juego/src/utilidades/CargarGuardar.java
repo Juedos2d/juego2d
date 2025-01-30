@@ -8,6 +8,7 @@ import javax.imageio.ImageIO;
 public class CargarGuardar {
 
     public static final String PLAYER_ATLAS = "Warrior_Blue.png";
+    public static final String LEVEL_ATLAS = "Terrain.png";
 
     public static BufferedImage GetSpriteAtlas(String fileName){
 
