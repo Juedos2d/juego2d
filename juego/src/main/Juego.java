@@ -1,6 +1,8 @@
 package main;
 
 import entidades.Jugador;
+import niveles.NivelManager;
+
 import java.awt.Graphics;
 
 public class Juego implements Runnable{
@@ -10,6 +12,9 @@ public class Juego implements Runnable{
 	private final int FPS_LIMITADOR = 120;
 	private final int UPS_SET = 200;
 	private Jugador jugador;
+	private NivelManager nivelManager;
+	
+	
 
 	public final static int TILES_DEFAULT_SIZE = 32;
 	public final static float ESCALA = 1.5f;
@@ -33,6 +38,7 @@ public class Juego implements Runnable{
 
 	private void initClases() {
 		jugador = new Jugador(200, 200); // Posiciona el jugador en un sitio
+		nivelManager = new NivelManager(this);
     }
 	
 	
@@ -43,10 +49,12 @@ public class Juego implements Runnable{
 
 	public void actualiza() {
 		jugador.actualiza();
+		nivelManager.actualizar();
         
     }
 	
 	public void render(Graphics g) {
+		nivelManager.draw(g);
 		jugador.render(g);
 		
 	}

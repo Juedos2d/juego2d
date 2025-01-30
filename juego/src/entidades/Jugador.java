@@ -90,7 +90,7 @@ public class Jugador extends Entidad{
 	
 	private void loadAnimations() {
 		
-		BufferedImage imagen = CargarGuardar.GetSpriteAtlas(CargarGuardar.PLAYER_ATLAS);
+		BufferedImage imagen = CargarGuardar.GetSpriteAtlas(CargarGuardar.JUGADOR);
 
 		animaciones = new BufferedImage[6][6];
 		for(int y = 0; y < animaciones.length; y++)
@@ -100,11 +100,8 @@ public class Jugador extends Entidad{
 	
 	public void setAtacar(boolean atacar) {
 		this.atacar = atacar;
-		
-		
 	}
 	
-
 	public boolean isIzq() {
 		return izq;
 	}

@@ -25,7 +25,7 @@ public class PanelJuego extends JPanel {
 		addMouseListener(mouseInpunts);
 		addMouseMotionListener(mouseInpunts);
 	} 
-	
+	 
 
 	private void setPanelSize() {
 		Dimension size = new Dimension(GAME_WIDTH, GAME_HEIGHT);
