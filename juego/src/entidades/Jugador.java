@@ -2,12 +2,8 @@ package entidades;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
-
-import javax.imageio.ImageIO;
+import utilidades.CargarGuardar;
 import static utilidades.Constantes.JugadorConstantes.*;
-import static utilidades.Constantes.Directions.*;
 
 public class Jugador extends Entidad{
 
@@ -94,29 +90,12 @@ public class Jugador extends Entidad{
 	
 	private void loadAnimations() {
 		
-		InputStream flujo = getClass().getResourceAsStream("/Warrior_Blue.png");
-		
-		try {
-			BufferedImage imagen = ImageIO.read(flujo);
+		BufferedImage imagen = CargarGuardar.GetSpriteAtlas(CargarGuardar.PLAYER_ATLAS);
 
-			animaciones = new BufferedImage[6][6];
-		
-			for(int y = 0; y < animaciones.length; y++)
-				for(int x = 0; x < animaciones[y].length; x++) 
-					animaciones[y][x] = imagen.getSubimage(x*195, y * 179 ,128 ,179);  // x,y,ancho,altura
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				flujo.close();
-				if (flujo != null) {
-                    flujo.close();
-                }
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
+		animaciones = new BufferedImage[6][6];
+		for(int y = 0; y < animaciones.length; y++)
+			for(int x = 0; x < animaciones[y].length; x++) 
+				animaciones[y][x] = imagen.getSubimage(x*195, y * 179 ,128 ,179);  // x,y,ancho,altura
 	}
 	
 	public void setAtacar(boolean atacar) {
