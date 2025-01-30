@@ -28,10 +28,13 @@ public class KeyboardInputs implements KeyListener {
 		
 		case KeyEvent.VK_W:
 			panelJuego.getJuego().getJugador().setArriba(true);
+			break;
 		case KeyEvent.VK_A:
 			panelJuego.getJuego().getJugador().setIzq(true);
+			break;
 		case KeyEvent.VK_S:
 			panelJuego.getJuego().getJugador().setAbajo(true);
+			break;
 		case KeyEvent.VK_D:
 			panelJuego.getJuego().getJugador().setDer(true); // True para cuando se presiona al vez
 			break;
@@ -41,13 +44,15 @@ public class KeyboardInputs implements KeyListener {
 	@Override
 	public void keyReleased(KeyEvent e) {
 		switch(e.getKeyCode()) {
-		
 		case KeyEvent.VK_W:
 			panelJuego.getJuego().getJugador().setArriba(false);
+			break;
 		case KeyEvent.VK_A:
 			panelJuego.getJuego().getJugador().setIzq(false);
+			break;
 		case KeyEvent.VK_S:
 			panelJuego.getJuego().getJugador().setAbajo(false);
+			break;
 		case KeyEvent.VK_D:
 			panelJuego.getJuego().getJugador().setDer(false);
 			break;
