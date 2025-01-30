@@ -14,7 +14,7 @@ public class Jugador extends Entidad{
 	private BufferedImage[][] animaciones;
 	private int  aniSegundo, aniNormal, velocidadAni = 45; //Para crear el recorrido completo de las animaciones //velocidad de las animaciones
 	private int jugadorAccion = ESTANDAR;
-	private boolean moving = false;
+	private boolean moving = false, atacar = false;
 	private boolean izq, arriba, der, abajo;
 	private float jugadorVelocidad = 2.0f;
 
@@ -39,24 +39,38 @@ public class Jugador extends Entidad{
 	
 	private void cargarAnimacionCompleta() {
 		aniSegundo++;
-		
 		if(aniSegundo >= velocidadAni ){
 			aniSegundo = 0;
 			aniNormal++;	
-		}if(aniNormal >= GetSpritesCantidad(jugadorAccion)) {
-			aniNormal = 0;
-		}
+			if(aniNormal >= GetSpritesCantidad(jugadorAccion)) {
+				aniNormal = 0;
+				atacar = false;
+			}
 			
+		}
 	}
 	
 	private void setAnimacion() {
+		
+		int startAni = jugadorAccion;
+		
 		if(moving)
 			jugadorAccion = CORRER;
 		else
 			jugadorAccion = ESTANDAR;
+		if(atacar)
+			jugadorAccion = ATAQUE_1;
+		if(startAni != jugadorAccion)
+			resetearAniSeg();
+			
 		
 	}
 	
+	private void resetearAniSeg() {
+		aniNormal = 0;
+		aniSegundo = 0;
+	}
+
 	private void cambiarPos() { // Esto lo realizamos cuando pulsamos dos teclas a la vez 
 		
 		moving = false;
@@ -104,6 +118,13 @@ public class Jugador extends Entidad{
 			}
 		}
 	}
+	
+	public void setAtacar(boolean atacar) {
+		this.atacar = atacar;
+		
+		
+	}
+	
 
 	public boolean isIzq() {
 		return izq;

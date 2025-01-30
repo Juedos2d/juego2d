@@ -26,8 +26,8 @@ public class MouseInpunts implements MouseListener, MouseMotionListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-	
-		
+		if(e.getButton() == MouseEvent.BUTTON1)
+			panelJuego.getJuego().getJugador().setAtacar(true);		
 	}
 
 	@Override
