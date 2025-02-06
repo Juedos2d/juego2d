@@ -11,8 +11,8 @@ import main.Juego;
 public class CargarGuardar {
 
     public static final String JUGADOR = "Warrior_Blue.png";
-    public static final String NIVEL = "terreno.png";
-    public static final String Nivel_Datos = "";
+    public static final String NIVEL = "campo.png";
+    public static final String Nivel_Datos = "tercero.jpg";
 
     public static BufferedImage GetSpriteAtlas(String fileName){
 
